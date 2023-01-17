@@ -1,0 +1,39 @@
+<form class="w-25 position-absolute top-50 start-50 translate-middle" [formGroup]="register" (ngSubmit)="submit()">
+    
+    <div class="px-5 py-4 shadow-lg p-3 mb-5 bg-body rounded">
+    <h2 class="text-center mb-3">Registro</h2>
+    <br>
+    <p>Nombre de usuario</p>
+    <input type="text" formControlName="user" class="form-control">
+    <br>
+    <div *ngIf="this.register.get('user')?.errors?.['required'] && this.register.get('user')?.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+    <div *ngIf="this.register.get('user')?.errors?.['minlength'] && this.register.get('user')?.touched" class="text-danger">
+        Este campo tiene que tener minimo 6 caracteres
+    </div>
+    <div *ngIf="this.register.get('user')?.errors?.['pattern'] && this.register.get('user')?.touched" class="text-danger">
+        Este campo tiene que ser solo letras
+    </div>
+
+
+    <p>Contraseña</p>
+    <input type="password" formControlName="password" class="form-control">
+    <div *ngIf="this.register.get('password')?.errors?.['required'] && this.register.get('password')?.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+    <div *ngIf="this.register.get('password')?.errors?.['minlength'] && this.register.get('password')?.touched" class="text-danger">
+        Este campo tiene que tener minimo 8 caracteres
+    </div>
+    <p class="form-label">Repetir Contraseña</p>
+    <input type="password" formControlName="repeatpassword" class="form-control">
+    <div *ngIf="this.register.get('repeatpassword')?.errors?.['required'] && this.register.get('repeatpassword')?.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+
+    <br>
+    <div class="d-grid gap-2 mb-3">
+    <button type="submit" [disabled]="register.invalid" class="btn btn-primary btn-block">Submit</button>
+    </div>
+</div>
+</form>

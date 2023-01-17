@@ -26,8 +26,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootswatch/dist/lux/bootswatch.min.css",
-              "src/styles.scss",
+              "node_modules/bootswatch/dist/lux/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -101,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
