@@ -32,8 +32,32 @@
     </div>
 
     <br>
+
+    <p>Correo</p>
+    <input type="text" formControlName="email" class="form-control">
+    <span *ngIf="this.register.get('email')?.errors?.['required'] && this.register.get('email')?.touched" class="errors text-danger">
+        Este campo es obligatorio
+    </span>
+    <span *ngIf="this.register.get('email')?.errors?.['pattern'] && this.register.get('email')?.touched" class="errors text-danger">
+        Este campo no es un email valido
+    </span>
+
+    <p>Estado civil</p>
+    <select formControlName="maritalstatus" class="form-select">
+        <option *ngFor="let estado of maritalstatus" value="{{estado}}">{{estado}}</option>
+    </select>
+    <span *ngIf="this.register.get('maritalstatus')?.errors?.['required'] && this.register.get('maritalstatus')?.touched" class="errors">
+        Este campo es obligatorio
+    </span>
+    
+    <br>
+
     <div class="d-grid gap-2 mb-3">
     <button type="submit" [disabled]="register.invalid" class="btn btn-primary btn-block">Submit</button>
     </div>
-</div>
+    </div>
+
+
+    
+
 </form>

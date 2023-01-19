@@ -7,10 +7,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
-
+  datos!:string;
+  maritalstatus:string[];
 
   constructor(){
-    
+    this.maritalstatus=["Soltero/a","Casado/a","Divorciado/a"];
   }
 
   register=new FormGroup({
@@ -24,6 +25,13 @@ export class RegisterComponent implements OnInit{
       Validators.minLength(8)
     ]),
     repeatpassword:new FormControl('',[
+      Validators.required
+    ]),
+    email:new FormControl('',[
+      Validators.required,
+      Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')
+    ]),
+    maritalstatus:new FormControl('',[
       Validators.required
     ])
   })
