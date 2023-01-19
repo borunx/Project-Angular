@@ -1,0 +1,29 @@
+<form class="w-25 position-absolute top-50 start-50 translate-middle" [formGroup]="login" (ngSubmit)="submit()">
+
+    <div class=" px-5 py-4 shadow-lg p-3 mb-5 bg-body rounded">
+        <h2 class="text-center mb-3">Log In</h2>
+        <div class="mb-3">
+            <label class="form-label">Usuari:</label>
+            <input type="text" formControlName="user" class="form-control">
+
+            <div *ngIf="this.login.get('user')?.errors?.['required'] && this.login.get('user')?.touched" class="text-danger mt-2">
+                Este campo es obligatorio*
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contrasenya:</label>
+            <input type="password" formControlName="pass" class="form-control">
+
+            <div *ngIf="this.login.get('pass')?.errors?.['required'] && this.login.get('pass')?.touched" class="text-danger mt-2">
+                Este campo es obligatorio*
+            </div>
+        </div>
+        
+        <div class="d-grid gap-2 mb-3">
+            <button type="submit" [disabled]="login.invalid" class="btn btn-primary btn-block">Submit</button>
+        </div>
+        
+    </div>
+
+</form>
