@@ -1,12 +1,12 @@
 export class User {
 
-    #username:string;
-    #password:string;
-    #email:string;
-    #marital_status:string;
-    #gender:string;
-    #information:string;
-    #role:string;
+    #_username:string;
+    #_password:string;
+    #_email:string;
+    #_marital_status:string;
+    #_gender:string;
+    #_information:string;
+    #_role:string;
 
     constructor(
         username:string,
@@ -18,72 +18,72 @@ export class User {
         role:string,
     )
     {
-        this.#username=username;
-        this.#password=password;
-        this.#email=email;
-        this.#marital_status=marital_status;
-        this.#gender=gender;
-        this.#information=information;
-        this.#role=role;
+        this.#_username=username;
+        this.#_password=password;
+        this.#_email=email;
+        this.#_marital_status=marital_status;
+        this.#_gender=gender;
+        this.#_information=information;
+        this.#_role=role;
     }
 
     //getters
     public get username(){
-        return this.#username;
+        return this.#_username;
     }
 
     public get password(){
-        return this.#password;
+        return this.#_password;
     }
 
     public get email(){
-        return this.#email;
+        return this.#_email;
     }
 
     public get marital_status(){
-        return this.#marital_status;
+        return this.#_marital_status;
     }
 
     public get gender(){
-        return this.#gender;
+        return this.#_gender;
     }
 
     public get information(){
-        return this.#information;
+        return this.#_information;
     }
 
     public get role(){
-        return this.#role;
+        return this.#_role;
     }
 
 
     //setters
     public set username(value:string){
-        this.#username = value;
+        this.#_username = value;
     }
 
     public set password(value:string){
-        this.#password = value;
+        this.#_password = value;
     }
 
     public set email(value:string){
-        this.#email = value;
+        this.#_email = value;
     }
 
     public set marital_status(value:string){
-        this.#marital_status = value;
+        this.#_marital_status = value;
     }
 
     public set gender(value:string){
-        this.#gender = value;
+        this.#_gender = value;
     }
 
     public set information(value:string){
-        this.#information = value;
+        this.#_information = value;
     }
 
     public set role(value:string){
-        this.#role = value;
+        this.#_role = value;
     }
     
 }

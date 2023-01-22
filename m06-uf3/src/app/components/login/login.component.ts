@@ -31,5 +31,22 @@ export class LoginComponent implements OnInit{
 
 
   submit(){
+    var user = this.login.get('user')?.value; 
+    var pass = this.login.get('pass')?.value; 
+
+    if(this.validateUser.validateLogin(user, pass) == ""){
+      //alert("Mal registrado -> User:" + user + " Pass:" + pass);
+      //Poner credenciales incorrectas en respuesta al usuario
+    }
+    else{
+      //alert("Bien registrado");
+      //Crear cookie y redirigir a la pàgina correspondiente
+
+      
+    }
+
+    // Preguntas
+    // Donde poner la generacion principal de clientes
+    
   }
 }
