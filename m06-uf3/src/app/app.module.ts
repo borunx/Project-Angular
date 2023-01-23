@@ -1,3 +1,4 @@
+import { GenEventsService } from './services/gen-events.service';
 import { LoginService } from 'src/app/services/login.service';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +27,8 @@ import { EventsComponent } from './components/events/events.component';
     ReactiveFormsModule
   ],
   providers: [LoginService,
-              CookieService],
+              CookieService,
+              GenEventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

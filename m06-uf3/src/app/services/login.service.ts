@@ -11,9 +11,9 @@ export class LoginService {
   }
 
   //Random data
-  names = ["valentin","sara","cindy","sonia","lara","manuel","ronnie","martin","oscar"];
+  names          = ["valentin","sara","cindy","sonia","lara","manuel","ronnie","martin","oscar"];
   marital_status = ["Casado","Soltero","Viudo","Divorciado","Pareja de hecho"];
-  genders = ["Hombre","Mujer","No especificar"];
+  genders        = ["Hombre","Mujer","No especificar"];
 
   //Official Users
   user1 = new User("jonatan","clau","jonatanfelizf@gmail.com","Casado","Hombre","Me gusta el beisbol","administrador");
@@ -37,7 +37,7 @@ export class LoginService {
   }
 
   //Create random users
-  private createUsers(){
+  private createUsers(): void{
     
     for (let i = 0; i < 18; i++) {
       let name   = this.names[Math.floor(Math.random()*this.names.length)];
