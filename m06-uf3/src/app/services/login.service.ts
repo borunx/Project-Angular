@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  constructor() { }
+  constructor() {
+    this.createUsers();
+  }
 
   //Random data
   names = ["valentin","sara","cindy","sonia","lara","manuel","ronnie","martin","oscar"];
@@ -21,8 +23,6 @@ export class LoginService {
 
   //Check User credentials
   validateLogin(user:any, pass:any): string{
-
-    this.createUsers();
 
     for (let i = 0; i < this.users.length; i++) {
       
@@ -47,6 +47,12 @@ export class LoginService {
       this.users.push(new User(name, "clau", name+i+"@gmail.com", status, gender, "Hola soy " + name, "comprador"));
       
     }
+  }
+
+
+  //Add user from register form
+  addUser(name:string, password:string, email:string, marital_status:string, gender:string, information:string): void{
+    this.users.push(new User(name,password,email,marital_status,gender,information,"comprador"));
   }
 
 }

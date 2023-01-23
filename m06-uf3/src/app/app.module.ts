@@ -7,12 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CookieService } from 'ngx-cookie-service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EventsComponent } from './components/events/events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,
+              CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

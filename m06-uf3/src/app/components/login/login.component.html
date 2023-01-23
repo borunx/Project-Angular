@@ -24,9 +24,7 @@
             <button type="submit" [disabled]="login.invalid" class="btn btn-primary btn-block">Submit</button>
         </div>
 
-        <!--<p class="text-center text-danger">Credenciales incorrectas</p>-->
-
-        <p class="text-center">No estas registrado? <a href="">Registrate</a></p>
+        <p *ngIf="oculta" class="text-center text-danger">Credenciales incorrectas</p>
         
     </div>
 
