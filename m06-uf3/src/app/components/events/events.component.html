@@ -7,12 +7,17 @@
     </div>
 
     <div class="row mt-5">
-        <div class="col-4 d-flex justify-content-center">
-            Filter by ubication: <input type="text" [(ngModel)]="ubicationFilter" (ngModelChange)="filter()">
+
+        <div class="col-12 mb-3 d-flex justify-content-start">
+            Items mostrats: <input type="number" [(ngModel)]="total" (ngModelChange)="filter()" pattern="[0-9]" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
         </div>
 
-        <div class="col-4 d-flex justify-content-center">
-            Filter by price: 
+        <div class="col-12 mb-3 d-flex justify-content-start">
+            Ubicació: <input type="text" [(ngModel)]="ubicationFilter" (ngModelChange)="filter()">
+        </div>
+
+        <div class="col-12 mb-3 d-flex justify-content-start">
+            Preu: 
             <select [(ngModel)]="priceFilter" (ngModelChange)="filter()">
                 <option value=5>5</option>
                 <option value=10>10</option>
@@ -24,8 +29,8 @@
             </select>
         </div>
 
-        <div class="col-4 d-flex justify-content-center">
-            Filter by type: 
+        <div class="col-12 d-flex justify-content-start">
+            Tipus d'event: 
             <select [(ngModel)]="typeFilter" (ngModelChange)="filter()">
                 <option value="Concierto">Concierto</option>
                 <option value="Cine">Cine</option>
@@ -36,6 +41,7 @@
                 <option value="Convencion">Convencion</option>
             </select>
         </div>
+
     </div>
 
     <div class="row">
@@ -46,20 +52,27 @@
     </div>
 
     <div class="row mt-5">
-        <div class="card col-3 box mx-2 mb-4" *ngFor="let event of events | paginate: {itemsPerPage: total, currentPage: cp}">
+        <div class="card col-3 text-white box mx-2 mb-4 bg-dark" *ngFor="let event of events | paginate: {itemsPerPage: total, currentPage: cp}">
 
+            <div class="card-header">| {{event.type}}</div>
             <div class="card-body">
-                <h5 class="card-title fs-4">{{event.name}} | <span class="fs-5">{{event.type}}</span></h5>
-                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text"></p>
-                <button class="btn btn-success">Modificar</button>
-                <button class="ms-3 btn btn-danger">Eliminar</button>
+                <h4 class="card-title">{{event.name}}</h4>
+                <p class="card-text">Ubicació: {{event.ubication}}</p>
+                <p class="card-text">Data: {{event.date | date:'shortDate'}}</p>
+                <p class="card-text">Preu: {{event.price | currency:'EUR':'symbol'}}</p>
+                <div *ngIf="show_admin">
+                    <button class="btn btn-success">Modificar</button>
+                    <button class="ms-3 btn btn-danger">Eliminar</button>
+                </div>
+                <div div *ngIf="show_costumer">
+                    <button class="btn btn-success">Comprar</button>
+                </div>
+                
             </div>
-            , , {{event.date | date:'shortDate'}}, {{event.price | currency:'EUR':'symbol'}}, {{event.ubication}}
         </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-5 mb-3">
         <div class="d-flex justify-content-center">
             <pagination-controls (pageChange)="cp = $event"></pagination-controls>
         </div>

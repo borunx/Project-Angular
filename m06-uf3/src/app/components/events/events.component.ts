@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit{
 
+  show_admin!:boolean;
+  show_costumer!:boolean;
+
   total!: number;
   cp!: number;
 
@@ -33,6 +36,9 @@ export class EventsComponent implements OnInit{
     this.ubicationFilter="";
     this.priceFilter=10;
     this.typeFilter="";
+
+    this.show_admin=true;
+    this.show_costumer=false;
   }
 
   filter(){
