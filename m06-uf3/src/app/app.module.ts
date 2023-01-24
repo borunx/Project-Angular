@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EventsComponent } from './components/events/events.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,13 @@ import { EventsComponent } from './components/events/events.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [LoginService,
               CookieService,
-              GenEventsService],
+              GenEventsService,
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
