@@ -20,6 +20,7 @@ export class EventsComponent implements OnInit{
   ubicationFilter!: string;
   typeFilter!: string;
   priceFilter!: number;
+  show_item!:boolean;
   
   events!:Esdeveniment[];
 
@@ -34,26 +35,31 @@ export class EventsComponent implements OnInit{
 
     this.esdevenimentFiltrado = this.events;
     this.ubicationFilter="";
-    this.priceFilter=10;
+    this.priceFilter=50;
     this.typeFilter="";
 
     this.show_admin=true;
     this.show_costumer=false;
+    this.show_item=false;
   }
 
+
   filter(){
-    console.log(this.ubicationFilter);
 
     this.esdevenimentFiltrado = this.events.filter(value => {
 
-      if(value.ubication.indexOf(this.ubicationFilter.toUpperCase()) != -1){
-        if(value.price <= this.priceFilter)
+      if(value.ubication.indexOf(this.ubicationFilter) != -1)
+      {
+        if(value.price == this.priceFilter /*|| value.type == this.typeFilter*/){
           return true;
+        }
       }
       return false;
 
     });
+
   }
+
 
   logout(){
 

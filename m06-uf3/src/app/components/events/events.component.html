@@ -9,7 +9,7 @@
     <div class="row mt-5">
 
         <div class="col-12 mb-3 d-flex justify-content-start">
-            Items mostrats: <input type="number" [(ngModel)]="total" (ngModelChange)="filter()" pattern="[0-9]" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+            Items mostrats: <input type="number" min="1" [(ngModel)]="total" pattern="[0-9]" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
         </div>
 
         <div class="col-12 mb-3 d-flex justify-content-start">
@@ -29,7 +29,7 @@
             </select>
         </div>
 
-        <div class="col-12 d-flex justify-content-start">
+        <!--<div class="col-12 d-flex justify-content-start">
             Tipus d'event: 
             <select [(ngModel)]="typeFilter" (ngModelChange)="filter()">
                 <option value="Concierto">Concierto</option>
@@ -40,7 +40,9 @@
                 <option value="Congreso">Congreso</option>
                 <option value="Convencion">Convencion</option>
             </select>
-        </div>
+        </div>-->
+
+        <div *ngIf="show_item" class="text-danger mt-4">No s'ha trobat cap item</div>
 
     </div>
 
@@ -52,7 +54,7 @@
     </div>
 
     <div class="row mt-5">
-        <div class="card col-3 text-white box mx-2 mb-4 bg-dark" *ngFor="let event of events | paginate: {itemsPerPage: total, currentPage: cp}">
+        <div class="card col-3 text-white box mx-2 mb-4 bg-dark" *ngFor="let event of esdevenimentFiltrado | paginate: {itemsPerPage: total, currentPage: cp}">
 
             <div class="card-header">| {{event.type}}</div>
             <div class="card-body">

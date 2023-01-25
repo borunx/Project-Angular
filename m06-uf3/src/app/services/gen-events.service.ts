@@ -31,7 +31,7 @@ export class GenEventsService {
       let price     = this.prices[Math.floor(Math.random()*this.prices.length)];
 
 
-      this.events.push(new Esdeveniment(name,type,new Date(date),ubication,price));
+      this.events.push(new Esdeveniment(i,name,type,new Date(date),ubication,price));
     }
 
     return this.events;

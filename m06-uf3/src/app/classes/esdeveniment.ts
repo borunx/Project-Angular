@@ -1,5 +1,6 @@
 export class Esdeveniment {
 
+    #_id:number;
     #_name:string;
     #_type:string;
     #_date:Date;
@@ -7,12 +8,14 @@ export class Esdeveniment {
     #_price:number;
 
     constructor(
+        id:number,
         name:string,
         type:string,
         date:Date,
         ubication:string,
         price:number
     ) {
+        this.#_id        = id;
         this.#_name      = name;
         this.#_type      = type;
         this.#_date      = date;
@@ -21,6 +24,10 @@ export class Esdeveniment {
     }
 
     //getters
+    public get id(){
+        return this.#_id;
+    }
+
     public get name(){
         return this.#_name;
     }

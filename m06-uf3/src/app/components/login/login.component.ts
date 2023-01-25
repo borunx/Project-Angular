@@ -58,7 +58,7 @@ oculta!:boolean;
 
       localStorage.setItem('usuari',JSON.stringify(login));
 
-      //mandar mensaje de sincronizacion para borra los botones de login y registro de arriba
+      //mandar mensaje de sincronizacion para ocultar los botones de login y registro de arriba
 
     }
     
