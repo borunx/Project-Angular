@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -15,7 +16,7 @@ oculta!:boolean;
 
 
 //constructor
-  constructor(private validateUser: LoginService, private myCookie: CookieService){
+  constructor(private validateUser: LoginService, private myCookie: CookieService, private router:Router){
 
   }
 
@@ -44,7 +45,7 @@ oculta!:boolean;
       this.oculta=true;
     }
     else{
-      //Crear cookie y redirigir a la pàgina correspondiente, el user y el rol en una array dentro de la cookie
+      //Crear cookie y redirigir a la pàgina /events
       this.oculta=false;
       role = this.validateUser.validateLogin(user, pass);
 
@@ -57,6 +58,8 @@ oculta!:boolean;
       this.myCookie.set('usuari',JSON.stringify(login));
 
       localStorage.setItem('usuari',JSON.stringify(login));
+
+      this.router.navigate(['/events']);
 
       //mandar mensaje de sincronizacion para ocultar los botones de login y registro de arriba
 

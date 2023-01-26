@@ -1,0 +1,62 @@
+<form #formPlantilla="ngForm" class="w-25 position-absolute top-50 start-50 translate-middle" (submit)="submit()">
+    <div class="container px-5 py-4 shadow-lg p-3 mb-5 bg-body rounded">
+    <h1 class="text-center mb-3">Modificar evento</h1>
+    
+    <label>Nombre:</label>
+    <input name="nom" #nom="ngModel" type="text" [(ngModel)]="nombre" required minlength="6" class="form-control">
+    <div *ngIf="nom.errors?.['required'] && nom.touched">
+        Este campo es obligatorio
+    </div>
+    <div *ngIf="nom.errors?.['minlength'] && nom.touched">
+        La longitud minima es de 6 caracteres
+    </div>
+    
+    
+    <br>
+    
+    <label>Tipo de evento</label>
+      <select class="form-control" name="tipo" [(ngModel)]="type" #tipo="ngModel" required>
+        <option [ngValue]="null">---Select---</option>
+        <option *ngFor="let eventos of type" [value]="eventos" [ngValue]="type">{{eventos}}</option>
+      </select>
+       
+    <div *ngIf="tipo.errors?.['required'] && tipo.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+    
+    <br>
+    
+    <label>Fecha del evento</label>
+    <input name="date" #date="ngModel" type="date" [(ngModel)]="fecha" required class="form-control">
+    <div *ngIf="date.errors?.['required'] && date.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+    
+    <br>
+    
+    <label>Lugar</label>
+    <input name="ubication" #ubication="ngModel" type="text" [(ngModel)]="lugar" required pattern="[a-zA-Z]+" class="form-control">
+    <div *ngIf="ubication.errors?.['required'] && ubication.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+    <div *ngIf="ubication.errors?.['pattern'] && ubication.touched" class="text-danger">
+        Este campo no es un lugar valido
+    </div>
+    <br>
+    <label>Precio</label>
+    <input name="price" #price="ngModel" type="text" [(ngModel)]="precio" required pattern="[0-9]+" class="form-control">
+    <div *ngIf="price.errors?.['required'] && price.touched" class="text-danger">
+        Este campo es obligatorio
+    </div>
+    <div *ngIf="price.errors?.['pattern'] && price.touched" class="text-danger">
+        Este campo no es un precio valido
+    </div>
+    
+    
+    <br>
+    
+    
+    
+    <button type="submit" [disabled]="formPlantilla.invalid" class="form-control">Submit</button>
+    </div>
+    </form>

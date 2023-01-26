@@ -19,36 +19,37 @@
         <div class="col-12 mb-3 d-flex justify-content-start">
             Preu: 
             <select [(ngModel)]="priceFilter" (ngModelChange)="filter()">
-                <option value=5>5</option>
-                <option value=10>10</option>
-                <option value=12>12</option>
-                <option value=15>15</option>
-                <option value=20>20</option>
-                <option value=30>30</option>
-                <option value=50>50</option>
+                <option value=5>5€</option>
+                <option value=10>10€</option>
+                <option value=12>12€</option>
+                <option value=15>15€</option>
+                <option value=20>20€</option>
+                <option value=30>30€</option>
+                <option value=50>50€</option>
             </select>
         </div>
 
-        <!--<div class="col-12 d-flex justify-content-start">
+        <div class="col-12 d-flex justify-content-start">
             Tipus d'event: 
             <select [(ngModel)]="typeFilter" (ngModelChange)="filter()">
-                <option value="Concierto">Concierto</option>
-                <option value="Cine">Cine</option>
-                <option value="Museo">Museo</option>
-                <option value="Feria">Feria</option>
+                <option value="Concert">Concert</option>
+                <option value="Cinema">Cinema</option>
+                <option value="Museu">Museu</option>
+                <option value="Fira">Fira</option>
                 <option value="Festival">Festival</option>
-                <option value="Congreso">Congreso</option>
-                <option value="Convencion">Convencion</option>
+                <option value="Congres">Congres</option>
+                <option value="Convencio">Convenció</option>
             </select>
-        </div>-->
+        </div>
 
-        <div *ngIf="show_item" class="text-danger mt-4">No s'ha trobat cap item</div>
+        <div *ngIf="esdevenimentFiltrado.length==0" class="text-danger mt-4">No s'ha trobat cap event</div>
 
     </div>
 
     <div class="row">
         <div class="text-center mt-5">
-            Total items: {{events.length}}
+            Total items: {{events.length}} <br><br>
+            Total items filtre: {{esdevenimentFiltrado.length}}
         </div>
         
     </div>
@@ -61,7 +62,7 @@
                 <h4 class="card-title">{{event.name}}</h4>
                 <p class="card-text">Ubicació: {{event.ubication}}</p>
                 <p class="card-text">Data: {{event.date | date:'shortDate'}}</p>
-                <p class="card-text">Preu: {{event.price | currency:'EUR':'symbol'}}</p>
+                <p class="card-text">Preu: {{event.price | currency:'EUR'}}</p>
                 <div *ngIf="show_admin">
                     <button class="btn btn-success">Modificar</button>
                     <button class="ms-3 btn btn-danger">Eliminar</button>

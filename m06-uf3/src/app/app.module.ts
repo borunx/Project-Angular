@@ -1,3 +1,4 @@
+import { ComparePasswordsDirective } from './directives/compare-passwords.directive';
 import { GenEventsService } from './services/gen-events.service';
 import { LoginService } from 'src/app/services/login.service';
 import { NgModule } from '@angular/core';
@@ -12,14 +13,17 @@ import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EventsComponent } from './components/events/events.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ModifyeventComponent } from './components/modifyevent/modifyevent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    ComparePasswordsDirective,
     LoginComponent,
     PageNotFoundComponent,
-    EventsComponent
+    EventsComponent,
+    ModifyeventComponent
   ],
   imports: [
     BrowserModule,

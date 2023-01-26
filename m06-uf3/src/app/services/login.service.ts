@@ -12,12 +12,12 @@ export class LoginService {
 
   //Random data
   names          = ["valentin","sara","cindy","sonia","lara","manuel","ronnie","martin","oscar"];
-  marital_status = ["Casado","Soltero","Viudo","Divorciado","Pareja de hecho"];
-  genders        = ["Hombre","Mujer","No especificar"];
+  marital_status = ["Casat","Solter","Vidu","Divorciat","Parella de fet"];
+  genders        = ["Home","Dona","No especificar"];
 
   //Official Users
-  user1 = new User("jonatan","clau","jonatanfelizf@gmail.com","Casado","Hombre","Me gusta el beisbol","administrador");
-  user2 = new User("pau","clau","paumartinez@gmail.com","Soltero","Hombre","Me gusta el futbol","comprador");
+  user1 = new User("jonatan","clau","jonatanfelizf@gmail.com","Casat","Home","M'agrada el beisbol","administrador");
+  user2 = new User("pau","clau","paumartinez@gmail.com","Solter","Home","M'agrada el futbol","comprador");
 
   users = [this.user1,this.user2];
 
@@ -44,7 +44,7 @@ export class LoginService {
       let status = this.marital_status[Math.floor(Math.random()*this.marital_status.length)];
       let gender = this.genders[Math.floor(Math.random()*this.genders.length)];
       
-      this.users.push(new User(name, "clau", name+i+"@gmail.com", status, gender, "Hola soy " + name, "comprador"));
+      this.users.push(new User(name, "clau", name+i+"@gmail.com", status, gender, "Hola soc " + name, "comprador"));
       
     }
   }
