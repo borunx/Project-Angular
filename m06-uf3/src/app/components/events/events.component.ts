@@ -13,7 +13,6 @@ export class EventsComponent implements OnInit{
 
   show_admin!:boolean;
   show_costumer!:boolean;
-  counter!:number;
 
   total!: number;
   cp!: number;
@@ -23,7 +22,6 @@ export class EventsComponent implements OnInit{
   ubicationFilter!: string;
   typeFilter!: string;
   priceFilter!: number;
-  show_item!:boolean;
   
   events!:Esdeveniment[];
 
@@ -42,26 +40,20 @@ export class EventsComponent implements OnInit{
     this.ubicationFilter="";
     this.priceFilter=50;
     this.typeFilter="";
-    this.counter=0;
 
     this.show_admin=false;
     this.show_costumer=false;
-    this.show_item=false;
   }
 
 
   filter(){
-   
-
-    this.show_item=false;
-    
 
     this.esdevenimentFiltrado = this.events.filter(value => {
 
       if(value.ubication.indexOf(this.ubicationFilter) != -1)
       { 
         if(value.type.indexOf(this.typeFilter)!=-1){
-          if(value.price == this.priceFilter /*|| value.type == this.typeFilter*/){
+          if(value.price == this.priceFilter){
             return true;
           }
         }
@@ -76,7 +68,7 @@ export class EventsComponent implements OnInit{
 
   logout(){
     this.myCookie.deleteAll();
-    //redirigir al login y volver a mostrar los botones de login y registro
+    //volver a mostrar los botones de login y registro
     this.router.navigate(['/login']);
   }
 

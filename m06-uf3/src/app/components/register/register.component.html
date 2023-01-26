@@ -1,93 +1,111 @@
-<form class="w-25 position-absolute top-50 start-50 translate-middle" [formGroup]="register" (ngSubmit)="submit()">
+
+<form class="g-3 w-50 mt-3 position-absolute top-50 start-50 translate-middle" [formGroup]="register" (ngSubmit)="submit()">
     
-    <div class="px-5 py-4 shadow-lg p-3 mb-5 bg-body rounded">
-    <h2 class="text-center mb-3">Registre</h2>
-    <br>
-    <p>Nom d'usuari</p>
-    <input type="text" formControlName="user" class="form-control" maxlength="50">
-    <br>
-    <div *ngIf="this.register.get('user')?.errors?.['required'] && this.register.get('user')?.touched" class="text-danger">
-        Aquest camp es obligatori
+    <div class="row px-5 py-4 shadow-lg p-3 mb-5 bg-body rounded">
+        <h2 class="text-center mb-3">Registre</h2>
+        
+        <div class="col-6">
+            <label for="name" class="form-label">Nom d'usuari</label>
+            <input type="text" formControlName="user" class="form-control" maxlength="50" id="name">
+            <div *ngIf="this.register.get('user')?.errors?.['required'] && this.register.get('user')?.touched" class="text-danger">
+                Aquest camp es obligatori
+            </div>
+            <div *ngIf="this.register.get('user')?.errors?.['minlength'] && this.register.get('user')?.touched" class="text-danger">
+                Aquest camp ha de tenir com a minim 6 caracters
+            </div>
+            <div *ngIf="this.register.get('user')?.errors?.['pattern'] && this.register.get('user')?.touched" class="text-danger">
+                Aquest camp ha de que tenir només lletres
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <label for="marital_status" class="form-label">Estat Civil</label>
+            <select formControlName="maritalstatus" class="form-select" id="marital_status">
+                <option *ngFor="let estado of maritalstatus" value="{{estado}}">{{estado}}</option>
+            </select>
+            <span *ngIf="this.register.get('maritalstatus')?.errors?.['required'] && this.register.get('maritalstatus')?.touched" class="errors text-danger">
+                Aquest camp es obligatori
+            </span>
+        </div>
+
+
+
+        <div class="col-6 mt-3">
+            <label for="password" class="form-label">Contrasenya</label>
+            <input type="password" formControlName="password" class="form-control" id="password">
+            <div *ngIf="this.register.get('password')?.errors?.['required'] && this.register.get('password')?.touched" class="text-danger">
+                Aquest camp es obligatori
+            </div>
+            <div *ngIf="this.register.get('password')?.errors?.['minlength'] && this.register.get('password')?.touched" class="text-danger">
+                Aquest camp ha de tenir com a minim 8 caracters
+            </div>
+        </div>
+
+
+        <div class="col-6 mt-3">
+            <label for="repassword" class="form-label">Repetir Contrasenya</label>
+            <input type="password" formControlName="repeatpassword" class="form-control" id="repassword" comparar [parametro]="this.register.value.password">
+            <div *ngIf="this.register.get('repeatpassword')?.errors?.['required'] && this.register.get('repeatpassword')?.touched" class="text-danger">
+                Aquest camp es obligatori
+            </div>
+            <div *ngIf="this.register.get('repeatpassword')?.errors?.['custom'] && this.register.get('repeatpassword')?.touched" class="text-danger">
+                No coincideixen els camps de la contrasenya
+            </div>
+        </div>
+
+        <div class="col-12 mt-3">
+            <label for="email" class="form-label">Correu</label>
+            <input type="text" formControlName="email" class="form-control" id="email">
+            <span *ngIf="this.register.get('email')?.errors?.['required'] && this.register.get('email')?.touched" class="errors text-danger">
+                Aquest camp es obligatori
+            </span>
+            <span *ngIf="this.register.get('email')?.errors?.['pattern'] && this.register.get('email')?.touched" class="errors text-danger">
+                Aquest camp no és un email valid
+            </span>
+        </div>
+
+        
+
+        <div class="col-6 mt-3">
+            <label for="gender" class="form-label">Sexe</label>
+            <br>
+            <div class="ms-3">
+            <input type="radio" name="sex" id="dona" value="Dona" formControlName="sex" class="option-input radio">&nbsp;
+            <label>Dona</label>&nbsp;&nbsp;&nbsp;
+            
+            <input type="radio" name="sex" id="home" value="Home" formControlName="sex" class="option-input radio">&nbsp;
+            <label>Home</label>&nbsp;&nbsp;&nbsp;
+            
+            <input type="radio" name="sex" id="altres" value="Altres" formControlName="sex" class="option-input radio">&nbsp;
+            <label>Altres</label>&nbsp;&nbsp;&nbsp;<br>
+            <span *ngIf="this.register.get('sex')?.errors?.['required'] && this.register.get('sex')?.touched" class="errors text-danger">
+                Aquest camp és obligatori
+            </span>
+            </div>
+
+        </div>
+
+
+        <div class="col-6 mt-3">
+            <label for="information" class="form-label">¿De que vols rebre informació?</label>
+            <br>
+            <label *ngFor="let informacion of information" ><input type="checkbox" value="{{informacion}}" formControlName="info" (change)="selectedInfo(informacion)">&nbsp;{{informacion}}&nbsp;&nbsp;&nbsp;</label><br>
+            <span *ngIf="this.register.get('info')?.errors?.['required'] && this.register.get('info')?.touched" class="errors text-danger">
+                Aquest camp és obligatori
+            </span>
+        </div>
+
+
+        <label class="mt-5 mb-4"><input type="checkbox" formControlName="accept"> Aceptar condicions</label><br>
+        <span *ngIf="this.register.get('accept')?.errors?.['required'] && this.register.get('accept')?.touched" class="errors text-danger">
+            Aquest camp és obligatori
+        </span>
+
+
+        <div class="d-grid gap-2 mb-3">
+        <button type="submit" [disabled]="register.invalid" class="btn btn-primary btn-block">Registrar-se</button>
+        </div>
     </div>
-    <div *ngIf="this.register.get('user')?.errors?.['minlength'] && this.register.get('user')?.touched" class="text-danger">
-        Aquest camp ha de tenir com a minim 6 caracters
-    </div>
-    <div *ngIf="this.register.get('user')?.errors?.['pattern'] && this.register.get('user')?.touched" class="text-danger">
-        Aquest camp ha de que tenir només lletres
-    </div>
-
-
-    <p>Contrasenya</p>
-    <input type="password" formControlName="password" class="form-control">
-    <div *ngIf="this.register.get('password')?.errors?.['required'] && this.register.get('password')?.touched" class="text-danger">
-        Aquest camp es obligatori
-    </div>
-    <div *ngIf="this.register.get('password')?.errors?.['minlength'] && this.register.get('password')?.touched" class="text-danger">
-        Aquest camp ha de tenir com a minim 8 caracters
-    </div>
-
-
-    <p class="form-label mt-4 mb-3">Repetir Contrasenya</p>
-    <input type="password" formControlName="repeatpassword" class="form-control" comparar [parametro]="this.register.value.password">
-    <div *ngIf="this.register.get('repeatpassword')?.errors?.['required'] && this.register.get('repeatpassword')?.touched" class="text-danger">
-        Aquest camp es obligatori
-    </div>
-    <div *ngIf="this.register.get('repeatpassword')?.errors?.['custom'] && this.register.get('repeatpassword')?.touched" class="text-danger">
-        No coincideixen els camps de la contrasenya
-     </div>
-
-    <br>
-
-    <p>Correo</p>
-    <input type="text" formControlName="email" class="form-control">
-    <span *ngIf="this.register.get('email')?.errors?.['required'] && this.register.get('email')?.touched" class="errors text-danger">
-        Aquest camp es obligatori
-    </span>
-    <span *ngIf="this.register.get('email')?.errors?.['pattern'] && this.register.get('email')?.touched" class="errors text-danger">
-        Aquest camp no és un email valid
-    </span>
-
-    <p class="mt-4">Estat civil</p>
-    <select formControlName="maritalstatus" class="form-select">
-        <option *ngFor="let estado of maritalstatus" value="{{estado}}">{{estado}}</option>
-    </select>
-    <span *ngIf="this.register.get('maritalstatus')?.errors?.['required'] && this.register.get('maritalstatus')?.touched" class="errors text-danger">
-        Aquest camp es obligatori
-    </span>
-    
-    <br>
-
-
-    <p>Sexe</p>
-    <input type="radio" name="sex" id="dona" value="Dona" formControlName="sex" class="option-input radio">&nbsp;
-    <label>Dona</label>&nbsp;&nbsp;&nbsp;
-    <input type="radio" name="sex" id="home" value="Home" formControlName="sex" class="option-input radio">&nbsp;
-    <label>Home</label>&nbsp;&nbsp;&nbsp;
-    <input type="radio" name="sex" id="altres" value="Altres" formControlName="sex" class="option-input radio">&nbsp;
-    <label>Altres</label>&nbsp;&nbsp;&nbsp;<br>
-    <span *ngIf="this.register.get('sex')?.errors?.['required'] && this.register.get('sex')?.touched" class="errors text-danger">
-        Aquest camp és obligatori
-    </span>
-
-
-    <p class="mt-3">¿De que vols rebre informació?</p>
-    <label *ngFor="let informacion of information" ><input type="checkbox" value="{{informacion}}" formControlName="info" (change)="selectedInfo(informacion)">{{informacion}}</label><br>
-    <span *ngIf="this.register.get('info')?.errors?.['required'] && this.register.get('info')?.touched" class="errors text-danger">
-        Aquest camp és obligatori
-    </span>
-
-    <label class="mt-3"><input type="checkbox" formControlName="accept"> Aceptar condicions</label><br>
-    <span *ngIf="this.register.get('accept')?.errors?.['required'] && this.register.get('accept')?.touched" class="errors text-danger">
-        Aquest camp és obligatori
-    </span>
-
-
-    <div class="d-grid gap-2 mb-3">
-    <button type="submit" [disabled]="register.invalid" class="btn btn-primary btn-block">Registrar-se</button>
-    </div>
-    </div>
-
-
-    
 
 </form>
