@@ -1,3 +1,4 @@
+import { SincronizacionService } from './services/sincronizacion.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,8 +12,12 @@ export class AppComponent implements OnInit {
 
   oculta_links!:boolean;
 
+  constructor(private sincro:SincronizacionService){}
+
   ngOnInit(): void {
-    this.oculta_links=true;
+    this.sincro.currentMessage.subscribe(
+      message => this.oculta_links=message
+    )
   }
   
 }

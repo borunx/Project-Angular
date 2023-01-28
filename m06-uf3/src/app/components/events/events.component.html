@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div class="row">
+    <div class="row mt-5">
         <div class="d-flex justify-content-end">
             <button class="btn btn-danger" (click)="logout()">Logout</button>
         </div>
@@ -63,11 +63,11 @@
                 <p class="card-text">Ubicació: {{event.ubication}}</p>
                 <p class="card-text">Data: {{event.date | date:'shortDate'}}</p>
                 <p class="card-text">Preu: {{event.price | currency:'EUR'}}</p>
-                <div *ngIf="show_admin">
+                <div *ngIf="user_role=='administrador'">
                     <button class="btn btn-success">Modificar</button>
-                    <button class="ms-3 btn btn-danger">Eliminar</button>
+                    <button class="ms-3 btn btn-danger" (click)="deleteEvent(event.id)">Eliminar</button>
                 </div>
-                <div div *ngIf="show_costumer">
+                <div div *ngIf="user_role=='comprador'">
                     <button class="btn btn-success">Comprar</button>
                 </div>
                 

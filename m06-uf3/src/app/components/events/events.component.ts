@@ -1,3 +1,4 @@
+import { SincronizacionService } from './../../services/sincronizacion.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { GenEventsService } from './../../services/gen-events.service';
@@ -13,6 +14,8 @@ export class EventsComponent implements OnInit{
 
   show_admin!:boolean;
   show_costumer!:boolean;
+  oculta_links!:boolean;
+  user_role!:string;
 
   total!: number;
   cp!: number;
@@ -25,7 +28,7 @@ export class EventsComponent implements OnInit{
   
   events!:Esdeveniment[];
 
-  constructor(private eventService:GenEventsService, private myCookie:CookieService, private router:Router){
+  constructor(private eventService:GenEventsService, private myCookie:CookieService, private router:Router, private sincro:SincronizacionService){
     
   }
 
@@ -41,8 +44,17 @@ export class EventsComponent implements OnInit{
     this.priceFilter=50;
     this.typeFilter="";
 
-    this.show_admin=false;
+    this.show_admin=true;
     this.show_costumer=false;
+
+    this.sincro.currentMessage.subscribe(
+      message => this.oculta_links=message
+    )
+
+    this.sincro.currentRole.subscribe(
+      message => this.user_role=message
+    )
+
   }
 
 
@@ -68,23 +80,23 @@ export class EventsComponent implements OnInit{
 
   logout(){
     this.myCookie.deleteAll();
-    //volver a mostrar los botones de login y registro
+    this.sincro.changeMessage(true);
     this.router.navigate(['/login']);
   }
 
-  show_eventsButtons(): void{ //usar esta funcion para enseñar los botones dependiendo del rol
-    let login = JSON.parse(this.myCookie.get('usuari'));
 
-    let role = login.role;
+  deleteEvent(id:number): void{
 
-    if (role == 'comprador') {
-      this.show_admin=false;
-      this.show_costumer=true;
+    for (let i = 0; i < this.events.length; i++) {
+      
+      if(this.events[i].id==id)
+      {
+        this.events.splice(i, 1);
+      }
+      
     }
-    else if (role == 'administrador') {
-      this.show_admin=true;
-      this.show_costumer=false;
-    }
+
   }
+
 
 }

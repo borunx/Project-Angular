@@ -50,6 +50,10 @@ export class Esdeveniment {
 
 
     //setters
+    public set id(value:number){
+        this.#_id = value;
+    }
+
     public set name(value:string){
 
         if(value.length <= 50){

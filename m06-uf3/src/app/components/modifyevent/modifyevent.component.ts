@@ -16,7 +16,7 @@ export class ModifyeventComponent implements OnInit{
 
   ngOnInit(): void {
     this.nombre="";
-    this.type=["Concierto","Cine","Museo","Feria","Festival","Congreso", "Convencion"];
+    this.type=["Concert","Cinema","Museu","Fira","Festival","Congres", "Convencio"];
     this.fecha;
     this.lugar="";
     this.precio;

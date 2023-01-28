@@ -1,3 +1,4 @@
+import { SincronizacionService } from './../../services/sincronizacion.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,10 +14,11 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit{
 //atributos
 oculta!:boolean;
-
+oculta_links!:boolean;
+user_role!:string;
 
 //constructor
-  constructor(private validateUser: LoginService, private myCookie: CookieService, private router:Router){
+  constructor(private validateUser: LoginService, private myCookie: CookieService, private router:Router, private sincro:SincronizacionService){
 
   }
 
@@ -33,6 +35,14 @@ oculta!:boolean;
 
   ngOnInit(): void {
     this.oculta=false;
+
+    this.sincro.currentMessage.subscribe(
+      message => this.oculta_links=message
+    )
+
+    this.sincro.currentRole.subscribe(
+      message => this.user_role=message
+    )
   }
 
 
@@ -45,7 +55,6 @@ oculta!:boolean;
       this.oculta=true;
     }
     else{
-      //Crear cookie y redirigir a la pàgina /events
       this.oculta=false;
       role = this.validateUser.validateLogin(user, pass);
 
@@ -59,9 +68,11 @@ oculta!:boolean;
 
       localStorage.setItem('usuari',JSON.stringify(login));
 
-      this.router.navigate(['/events']);
+      this.sincro.changeMessage(false);
 
-      //mandar mensaje de sincronizacion para ocultar los botones de login y registro de arriba
+      this.sincro.changeRole(role);
+
+      this.router.navigate(['/events']);
 
     }
     
