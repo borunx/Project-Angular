@@ -9,24 +9,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
+
+  // attributes
   datos!:string;
   maritalstatus:string[];
   information:string[];
   selected:string[];
 
 
+  // constructor
   constructor(private registerUser:LoginService, private router:Router){
     this.maritalstatus=["Solter","Casat","Divorciat"];
     this.information=["Videojocs","Accesoris", "Novetats"];
     this.selected=[];
   }
 
+  // validations
   register=new FormGroup({
     user:new FormControl('',[
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(50),
-      Validators.pattern('[a-zA-Z]+')//patterns dentro de []
+      Validators.pattern('[a-zA-Z]+')
     ]),
     password:new FormControl('',[
       Validators.required,
@@ -59,7 +63,9 @@ export class RegisterComponent implements OnInit{
     
   }
 
-
+  /**
+   * Register button
+   */
   submit(){
     var user = this.register.get('user')?.value ?? ""; 
     var pass = this.register.get('password')?.value ?? "";
@@ -68,24 +74,28 @@ export class RegisterComponent implements OnInit{
     var email = this.register.get('email')?.value ?? "";
     var information = this.register.get('info')?.value ?? "";
 
+    // Register user
     this.registerUser.addUser(user,pass,email,status,sex,information);
 
+    // Redirect to login
     this.router.navigate(['/login']);
   }
 
+
+  //
   selectedInfo(informacion:string){
     console.log(informacion);
-    var esta = -1;//0 es false
+    var is = -1;//0 es false
     for (let i = 0; i < this.selected.length; i++) {
       if(this.selected[i] == informacion){
-        esta = i;
+        is = i;
         break;
       }
     }
-    if(esta==-1){//si no esta lo añado
+    if(is==-1){//si no esta lo añado
       this.selected.push(informacion);
     }else{//si esta lo elimino
-      this.selected.splice(esta,1);//elimino
+      this.selected.splice(is,1);//elimino
     }
 
   }

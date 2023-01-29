@@ -12,33 +12,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit{
 
+  // attributes
+  events!:Esdeveniment[];
   show_admin!:boolean;
   show_costumer!:boolean;
   oculta_links!:boolean;
   user_role!:string;
 
+  //pagination
   total!: number;
   cp!: number;
 
-  //filtrar
+  //filter
   esdevenimentFiltrado!: Esdeveniment[];
   ubicationFilter!: string;
   typeFilter!: string;
   priceFilter!: number;
   
-  events!:Esdeveniment[];
+  
+  // constructor
+  constructor(private eventService:GenEventsService, private myCookie:CookieService, private router:Router, private sincro:SincronizacionService){}
 
-  constructor(private eventService:GenEventsService, private myCookie:CookieService, private router:Router, private sincro:SincronizacionService){
-    
-  }
-
+  // Initialize variables
   ngOnInit(): void {
     this.events = this.eventService.createEvents();
 
-    this.total = 12;//items per page
-    this.cp = 1;//pagina de inicio
+    this.total = 12;
+    this.cp = 1;
 
-
+    
     this.esdevenimentFiltrado = this.events;
     this.ubicationFilter="";
     this.priceFilter=50;
@@ -57,7 +59,10 @@ export class EventsComponent implements OnInit{
 
   }
 
-
+  /**
+   * Filter events by three fields: ubication, type and price
+   * @return Return a filtered array
+   */
   filter(){
 
     this.esdevenimentFiltrado = this.events.filter(value => {
@@ -78,13 +83,27 @@ export class EventsComponent implements OnInit{
   }
 
 
+  /**
+   * Logout user, delete cookies and redirecto to login
+   */
   logout(){
+    // delete all cookies
     this.myCookie.deleteAll();
-    this.sincro.changeMessage(true);
+
+    // show login and register buttons
+    this.sincro.changeMessage(true); 
+
+    // delete role
+    this.sincro.changeRole(""); 
+
+    // redirect to login
     this.router.navigate(['/login']);
   }
 
-
+  /**
+   * Delete event by id
+   * @param id 
+   */
   deleteEvent(id:number): void{
 
     for (let i = 0; i < this.events.length; i++) {
@@ -93,10 +112,6 @@ export class EventsComponent implements OnInit{
       {
         this.events.splice(i, 1);
       }
-      
     }
-
   }
-
-
 }

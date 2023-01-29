@@ -12,17 +12,17 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-//atributos
+// attributes
 oculta!:boolean;
 oculta_links!:boolean;
 user_role!:string;
 
-//constructor
+// constructor
   constructor(private validateUser: LoginService, private myCookie: CookieService, private router:Router, private sincro:SincronizacionService){
 
   }
 
-  //metodos de la clase
+  // validations
   login=new FormGroup({
     user:new FormControl('',[
       Validators.required
@@ -32,7 +32,7 @@ user_role!:string;
     ])
   })
 
-
+  // Initialize variables
   ngOnInit(): void {
     this.oculta=false;
 
@@ -45,20 +45,24 @@ user_role!:string;
     )
   }
 
-
+  /**
+   * Login button
+   */
   submit(){
     var user = this.login.get('user')?.value; 
     var pass = this.login.get('pass')?.value; 
     var role;
 
+    // Check user credentials
     if(this.validateUser.validateLogin(user, pass) == ""){
+      // Show error missage
       this.oculta=true;
     }
     else{
       this.oculta=false;
       role = this.validateUser.validateLogin(user, pass);
 
-      //Create cookie && Local Storage
+      //Create cookie and Local Storage
       var login = {
         "user":user,
         "role":role
@@ -68,11 +72,14 @@ user_role!:string;
 
       localStorage.setItem('usuari',JSON.stringify(login));
 
-      this.sincro.changeMessage(false);
+      // Hide login and register buttons
+      this.sincro.changeMessage(false); 
 
+      // Change user role
       this.sincro.changeRole(role);
 
-      this.router.navigate(['/events']);
+      // Redirect to component events
+      this.router.navigate(['/events']); 
 
     }
     

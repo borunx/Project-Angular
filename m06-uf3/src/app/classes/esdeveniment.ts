@@ -1,5 +1,6 @@
 export class Esdeveniment {
 
+    // attributes
     #_id:number;
     #_name:string;
     #_type:string;
@@ -7,6 +8,7 @@ export class Esdeveniment {
     #_ubication:string;
     #_price:number;
 
+    // constructor
     constructor(
         id:number,
         name:string,
@@ -23,7 +25,7 @@ export class Esdeveniment {
         this.#_price     = price;
     }
 
-    //getters
+    // getters
     public get id(){
         return this.#_id;
     }
@@ -49,7 +51,7 @@ export class Esdeveniment {
     }
 
 
-    //setters
+    // setters
     public set id(value:number){
         this.#_id = value;
     }

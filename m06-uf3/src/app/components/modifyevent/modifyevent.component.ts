@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modifyevent.component.css']
 })
 export class ModifyeventComponent implements OnInit{
+
+  // attributes
   nombre!:string;
   type!:string[];
   fecha!:Date;
@@ -13,7 +15,7 @@ export class ModifyeventComponent implements OnInit{
   precio!:number;
 
 
-
+  // Initialize variables
   ngOnInit(): void {
     this.nombre="";
     this.type=["Concert","Cinema","Museu","Fira","Festival","Congres", "Convencio"];

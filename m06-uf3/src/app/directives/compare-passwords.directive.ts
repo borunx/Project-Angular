@@ -13,7 +13,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 })
 
 export class ComparePasswordsDirective implements Validator{
-//atributo especial de esta clase
+// special attribute of this class
   @Input() parametro:any;
 
   constructor() { }
@@ -21,7 +21,7 @@ export class ComparePasswordsDirective implements Validator{
   validate(control: AbstractControl): ValidationErrors|null {
     let valida:boolean=false;
 
-    if(control.value == this.parametro){//es el que va a mirar lo que sea del campo: repetir contraseña sea de minimo 5
+    if(control.value == this.parametro){
       valida=true;
     }
     return valida? null: {'custom':true};

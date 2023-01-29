@@ -1,5 +1,6 @@
 export class User {
 
+    // attributes
     #_username:string;
     #_password:string;
     #_email:string;
@@ -8,6 +9,8 @@ export class User {
     #_information:string;
     #_role:string;
 
+
+    // constructor
     constructor(
         username:string,
         password:string,
@@ -27,7 +30,7 @@ export class User {
         this.#_role=role;
     }
 
-    //getters
+    // getters
     public get username(){
         return this.#_username;
     }
@@ -57,7 +60,7 @@ export class User {
     }
 
 
-    //setters
+    // setters
     public set username(value:string){
         this.#_username = value;
     }

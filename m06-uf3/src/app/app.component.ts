@@ -8,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   
+  // attributes
   title = 'm06-uf3';
 
   oculta_links!:boolean;
 
+  // constructor
   constructor(private sincro:SincronizacionService){}
 
+  // Initialize variable
   ngOnInit(): void {
     this.sincro.currentMessage.subscribe(
       message => this.oculta_links=message

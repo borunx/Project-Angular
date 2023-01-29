@@ -6,18 +6,16 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SincronizacionService {
 
-  //declarar dos elementos especiales
-
-  //la variable que voy a compartir su contenido
+  // declare variables to share
   private messageSource=new BehaviorSubject(true);
 
   private user_role = new BehaviorSubject("");
   
-  //para comunicar el valor de esta propiedad
+  // comunicate variable value
   public currentMessage=this.messageSource.asObservable();
   public currentRole=this.user_role.asObservable();
 
-  //metodo recoge cualquier cambio y se lo pasara a todas las componentes
+  // Change value in all components
   public changeMessage(message:boolean){
     this.messageSource.next(message);
   }
@@ -25,5 +23,6 @@ export class SincronizacionService {
   public changeRole(message:string){
     this.user_role.next(message);
   }
+
   constructor() { }
 }
