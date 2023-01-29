@@ -6,16 +6,17 @@
         
         <div class="col-6">
             <label for="name" class="form-label">Nom d'usuari</label>
-            <input type="text" formControlName="user" class="form-control" maxlength="50" id="name">
-            <div *ngIf="this.register.get('user')?.errors?.['required'] && this.register.get('user')?.touched" class="text-danger">
-                Aquest camp es obligatori
-            </div>
-            <div *ngIf="this.register.get('user')?.errors?.['minlength'] && this.register.get('user')?.touched" class="text-danger">
-                Aquest camp ha de tenir com a minim 6 caracters
-            </div>
-            <div *ngIf="this.register.get('user')?.errors?.['pattern'] && this.register.get('user')?.touched" class="text-danger">
-                Aquest camp ha de que tenir només lletres
-            </div>
+        <input type="text" formControlName="user" class="form-control" validateName>
+        <br>
+        <div *ngIf="this.register.get('user')?.errors?.['required'] && this.register.get('user')?.touched" class="text-danger">
+            Aquest camp es obligatori
+        </div>
+        <div *ngIf="this.register.get('user')?.errors?.['minlength'] && this.register.get('user')?.touched" class="text-danger">
+            Aquest camp te que tindre minim 6 caracters
+        </div>
+        <div *ngIf="this.register.get('user')?.errors?.['custom'] && this.register.get('user')?.touched" class="text-danger">
+            Aquest camp no pot contindre lletres
+        </div>
         </div>
 
 
@@ -54,15 +55,13 @@
             </div>
         </div>
 
-        <div class="col-12 mt-3">
-            <label for="email" class="form-label">Correu</label>
-            <input type="text" formControlName="email" class="form-control" id="email">
-            <span *ngIf="this.register.get('email')?.errors?.['required'] && this.register.get('email')?.touched" class="errors text-danger">
-                Aquest camp es obligatori
-            </span>
-            <span *ngIf="this.register.get('email')?.errors?.['pattern'] && this.register.get('email')?.touched" class="errors text-danger">
-                Aquest camp no és un email valid
-            </span>
+        <p>Correu</p>
+        <input type="text" formControlName="email" class="form-control" validarEmail>
+        <span *ngIf="this.register.get('email')?.errors?.['required'] && this.register.get('email')?.touched" class="errors text-danger">
+            Aquest camp es obligatori
+        </span>
+        <div *ngIf="this.register.get('email')?.errors?.['custom'] && this.register.get('email')?.touched" class="text-danger">
+            No es un email valid
         </div>
 
         

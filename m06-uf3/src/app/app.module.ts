@@ -14,6 +14,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { EventsComponent } from './components/events/events.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ModifyeventComponent } from './components/modifyevent/modifyevent.component';
+import { ValidateNameDirective } from './directives/validate-name.directive';
+import { ValidateEmailDirective } from './directives/validate-email.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ModifyeventComponent } from './components/modifyevent/modifyevent.compo
     LoginComponent,
     PageNotFoundComponent,
     EventsComponent,
-    ModifyeventComponent
+    ModifyeventComponent,
+    ValidateNameDirective,
+    ValidateEmailDirective
   ],
   imports: [
     BrowserModule,

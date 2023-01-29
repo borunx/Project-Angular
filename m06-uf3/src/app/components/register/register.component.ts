@@ -81,21 +81,24 @@ export class RegisterComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
-
-  //
+  /**
+   * For information checkbox
+   * @param informacion 
+   * If checkbox is checked it will be added, otherwise it will be removed
+   */
   selectedInfo(informacion:string){
     console.log(informacion);
-    var is = -1;//0 es false
+    var is = -1;
     for (let i = 0; i < this.selected.length; i++) {
       if(this.selected[i] == informacion){
         is = i;
         break;
       }
     }
-    if(is==-1){//si no esta lo añado
+    if(is==-1){
       this.selected.push(informacion);
-    }else{//si esta lo elimino
-      this.selected.splice(is,1);//elimino
+    }else{
+      this.selected.splice(is,1);
     }
 
   }
