@@ -19,7 +19,7 @@ export class ValidateNameDirective {
 
   validate(control: AbstractControl): ValidationErrors|null {
     let valida:boolean=false;
-    let pattern = /[a-zA-Z]+/;
+    let pattern = /^[a-zA-Z]+/;
     if(pattern.test(control.value)){
       valida=true;
     }

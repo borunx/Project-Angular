@@ -3,9 +3,12 @@
     <h1 class="text-center mb-3">Modificar event</h1>
     
     <label>Nom de l'event:</label>
-    <input name="nom" #nom="ngModel" type="text" [(ngModel)]="nombre" required class="form-control" readonly >
+    <input name="nom" #nom="ngModel" type="text" [(ngModel)]="nombre" required pattern="[ñÑçÇüÜïÏa-zA-Z_ ]*$" maxlength="50" class="form-control">
     <div *ngIf="nom.errors?.['required'] && nom.touched" class="text-danger">
         Aquest camp és obligatori
+    </div>
+    <div *ngIf="nom.errors?.['pattern'] && nom.touched" class="text-danger">
+        Caracters incorrectes
     </div>
     
     

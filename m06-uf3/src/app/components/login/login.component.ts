@@ -45,9 +45,8 @@ user_role!:string;
     )
   }
 
-  /**
-   * Login button
-   */
+
+  // Login button
   submit(){
     var user = this.login.get('user')?.value; 
     var pass = this.login.get('pass')?.value; 

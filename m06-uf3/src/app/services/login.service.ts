@@ -22,9 +22,7 @@ export class LoginService {
   users = [this.user1,this.user2];
 
 
-  /**
-   * Create random users
-   */
+  // Create random users
   private createUsers(): void{
     
     for (let i = 0; i < 18; i++) {
@@ -44,12 +42,7 @@ export class LoginService {
   }
 
 
-  /**
-   * Check user credentials
-   * @param user username 
-   * @param pass password
-   * @returns if user is registered return role (string), else return empty string
-   */
+  // Check user credentials
   validateLogin(user:any, pass:any): string{
 
     for (let i = 0; i < this.users.length; i++) {

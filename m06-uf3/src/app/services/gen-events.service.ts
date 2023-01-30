@@ -22,10 +22,7 @@ export class GenEventsService {
   prices     = [20,12,50,5,15,30,10];
 
 
-  /**
-   * Create random events
-   * @returns event type array
-   */
+  // Create random events
   createEvents(): Esdeveniment[] {
 
     for (let i = 0; i < 100; i++) {

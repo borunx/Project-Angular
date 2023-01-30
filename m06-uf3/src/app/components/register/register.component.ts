@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit{
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(50),
-      Validators.pattern('[a-zA-Z]+')
+      //Validators.pattern('[a-zA-Z]+')
     ]),
     password:new FormControl('',[
       Validators.required,
@@ -63,9 +63,7 @@ export class RegisterComponent implements OnInit{
     
   }
 
-  /**
-   * Register button
-   */
+  // Register button
   submit(){
     var user = this.register.get('user')?.value ?? ""; 
     var pass = this.register.get('password')?.value ?? "";
@@ -81,6 +79,7 @@ export class RegisterComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
+  
   /**
    * For information checkbox
    * @param informacion 
