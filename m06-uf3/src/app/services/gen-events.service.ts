@@ -10,7 +10,9 @@ export class GenEventsService {
   events:Esdeveniment[] = [];
 
 
-  constructor() {}
+  constructor() {
+    this.events = this.createEvents();
+  }
 
   // Random data
   names      = ["Santiago Apostol","The Who","The Kooks","Blackberry Smoke","Andre Rieu","Yes","Horizon"];

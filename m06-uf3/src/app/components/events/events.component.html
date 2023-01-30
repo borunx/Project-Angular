@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="oculta_events">
 
     <div class="row mt-5">
         <div class="d-flex justify-content-end">
@@ -64,7 +64,7 @@
                 <p class="card-text">Data: {{event.date | date:'shortDate'}}</p>
                 <p class="card-text">Preu: {{event.price | currency:'EUR'}}</p>
                 <div *ngIf="user_role=='administrador'">
-                    <button class="btn btn-success">Modificar</button>
+                    <button class="btn btn-success" (click)="modifyEvent(event.id)">Modificar</button>
                     <button class="ms-3 btn btn-danger" (click)="deleteEvent(event.id)">Eliminar</button>
                 </div>
                 <div div *ngIf="user_role=='comprador'">
@@ -83,8 +83,8 @@
 </div>
 
 
-<!--<app-modifyevent></app-modifyevent>-->
+<app-modifyevent [parametro]="parentMessage" (missage)="actualizar($event)" *ngIf="oculta_modify"></app-modifyevent>
 
-
+<!--[parametro]="objeto evento a modificar"-->
 
 

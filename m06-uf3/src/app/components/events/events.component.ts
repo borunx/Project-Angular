@@ -18,6 +18,9 @@ export class EventsComponent implements OnInit{
   show_costumer!:boolean;
   oculta_links!:boolean;
   user_role!:string;
+  oculta_modify!:boolean;
+  oculta_events!:boolean;
+  parentMessage!:Esdeveniment;
 
   //pagination
   total!: number;
@@ -35,7 +38,7 @@ export class EventsComponent implements OnInit{
 
   // Initialize variables
   ngOnInit(): void {
-    this.events = this.eventService.createEvents();
+    this.events = this.eventService.events;
 
     this.total = 12;
     this.cp = 1;
@@ -48,6 +51,8 @@ export class EventsComponent implements OnInit{
 
     this.show_admin=true;
     this.show_costumer=false;
+    this.oculta_events=true;
+    this.oculta_modify=false;
 
     this.sincro.currentMessage.subscribe(
       message => this.oculta_links=message
@@ -113,5 +118,23 @@ export class EventsComponent implements OnInit{
         this.events.splice(i, 1);
       }
     }
+  }
+
+  modifyEvent(id:number){
+    this.oculta_events=false;
+    this.oculta_modify=true;
+
+    this.parentMessage = this.events[id];
+  }
+
+  actualizar(event:any){
+
+    this.events[event[0]].type = event[2]; // 0 - id | 2 - event type
+    this.events[event[0]].date = event[3]; // 0 - id | 3 - event date
+    this.events[event[0]].ubication = event[4]; // 0 - id | 4 - event ubication
+    this.events[event[0]].price = event[5]; // 0 - id | 5 - event price
+    
+    this.oculta_events=true;
+    this.oculta_modify=false;
   }
 }

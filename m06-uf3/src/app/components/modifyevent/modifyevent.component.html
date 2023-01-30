@@ -3,12 +3,9 @@
     <h1 class="text-center mb-3">Modificar event</h1>
     
     <label>Nom de l'event:</label>
-    <input name="nom" #nom="ngModel" type="text" [(ngModel)]="nombre" required minlength="6" class="form-control">
+    <input name="nom" #nom="ngModel" type="text" [(ngModel)]="nombre" required class="form-control" readonly >
     <div *ngIf="nom.errors?.['required'] && nom.touched" class="text-danger">
         Aquest camp és obligatori
-    </div>
-    <div *ngIf="nom.errors?.['minlength'] && nom.touched" class="text-danger">
-        La longitut minima és de 6 caracters
     </div>
     
     
@@ -16,8 +13,8 @@
     
     <label>Tipus d'event</label>
       <select class="form-control" name="tipo" [(ngModel)]="type" #tipo="ngModel" required>
-        <option [ngValue]="null" disabled selected>---Selecciona---</option>
-        <option *ngFor="let eventos of type" [value]="eventos" [ngValue]="type">{{eventos}}</option>
+        <option [ngValue]="type" disabled selected>{{type}}</option>
+        <option *ngFor="let eventos of type_events" [value]="eventos">{{eventos}}</option>
       </select>
        
     <div *ngIf="tipo.errors?.['required'] && tipo.touched" class="text-danger">
@@ -27,36 +24,40 @@
     <br>
     
     <label>Data de l'event</label>
-    <input name="date" #date="ngModel" type="date" [(ngModel)]="fecha" required class="form-control">
+    <input name="text" #date="ngModel" type="text" [(ngModel)]="fecha" required pattern="[[0-9]{4}-[0-9]{2}-[0-9]{2}]*$" class="form-control" placeholder="yyyy-mm-dd">
     <div *ngIf="date.errors?.['required'] && date.touched" class="text-danger">
         Aquest camp és obligatori
+    </div>
+    <div *ngIf="date.errors?.['pattern'] && date.touched" class="text-danger">
+        Data incorrecte
     </div>
     
     <br>
     
     <label>Lloc</label>
-    <input name="ubication" #ubication="ngModel" type="text" [(ngModel)]="lugar" required pattern="[a-zA-Z]+" class="form-control">
+    <input name="ubication" #ubication="ngModel" type="text" [(ngModel)]="lugar" required pattern="[ñÑçÇüÜïÏa-zA-Z_ ]*$" class="form-control">
     <div *ngIf="ubication.errors?.['required'] && ubication.touched" class="text-danger">
         Aquest camp és obligatori
     </div>
     <div *ngIf="ubication.errors?.['pattern'] && ubication.touched" class="text-danger">
-        Lloc no valid
+        Lloc incorrecte
     </div>
+
     <br>
     <label>Preu</label>
-    <input name="price" #price="ngModel" type="text" [(ngModel)]="precio" required pattern="[0-9]+" class="form-control">
+    <select class="form-control" name="price" [(ngModel)]="precio" #price="ngModel" required>
+        <option [ngValue]="precio" disabled selected>{{precio}}</option>
+        <option *ngFor="let precio of precio_events" [value]="precio">{{precio}}</option>
+    </select>
     <div *ngIf="price.errors?.['required'] && price.touched" class="text-danger">
         Aquest camp és obligatori
     </div>
-    <div *ngIf="price.errors?.['pattern'] && price.touched" class="text-danger">
-        Preu no valid
-    </div>
     
     
     <br>
     
     
     
-    <button type="submit" [disabled]="formPlantilla.invalid" class="form-control">Modificar</button>
+    <button type="submit" [disabled]="formPlantilla.invalid" class="btn btn-primary form-control">Modificar</button>
     </div>
-    </form>
+</form>
